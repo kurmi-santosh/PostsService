@@ -1,0 +1,25 @@
+﻿
+networks:
+  localdev:
+    name: localdev
+services:
+  api:
+    build: PostsService/
+    restart: always
+    ports:
+      - 8080:80
+    depends_on:
+      - database
+    networks:
+      - localdev
+  database:
+    image: mcr.microsoft.com/azure-sql-edge:latest
+    container_name: db-server
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=zklo5qy@0824
+      - MSSQL_TCP_PORT=1433
+    ports:
+      - 1400:1433
+    networks:
+      - localdev
