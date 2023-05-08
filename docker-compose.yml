@@ -17,9 +17,9 @@ services:
     container_name: db-server
     environment:
       - ACCEPT_EULA=Y
-      - MSSQL_SA_PASSWORD=zklo5qy@0824
+      - MSSQL_SA_PASSWORD='Kan@8106966022'
       - MSSQL_TCP_PORT=1433
     ports:
-      - 1400:1433
+      - 1433:1433
     networks:
       - localdev
