@@ -46,6 +46,8 @@ namespace PostsService
                 option.SwaggerEndpoint(swaggerOptions.UIEndpoint, "v1");
             });
 
+            PrepareDatabase.PreparePopulation(app);
+            
             app.UseHttpsRedirection();
 
             app.UseRouting();

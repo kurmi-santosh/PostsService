@@ -9,16 +9,16 @@ services:
     ports:
       - 8080:80
     depends_on:
-      - database
+      - sql-server
     networks:
       - localdev
-  database:
-    image: mcr.microsoft.com/azure-sql-edge:latest
-    container_name: db-server
+
+  sql-server:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sql-server
     environment:
-      - ACCEPT_EULA=Y
-      - MSSQL_SA_PASSWORD='Kan@8106966022'
-      - MSSQL_TCP_PORT=1433
+      - ACCEPT_EULA=1
+      - MSSQL_SA_PASSWORD=MySQLPassw0rd
     ports:
       - 1433:1433
     networks:
