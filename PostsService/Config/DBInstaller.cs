@@ -8,7 +8,14 @@ namespace PostsService.Config
     {
         public void InstallService(IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<DataContext>(options => options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+            var database = configuration["Database"] ?? "Posts";
+            var server = configuration["DBServer"] ?? "sql-server";
+            var port = configuration["DBPort"] ?? "1433";
+            var userName = configuration["UserName"] ?? "SA";
+            var password = configuration["Password"] ?? "MySQLPassw0rd";
+            var connectionString = $"Server={server},{port};Initial Catalog={database};User ID={userName};Password={password}";
+
+            services.AddDbContext<DataContext>(options => options.UseSqlServer(connectionString));
         }
     }
 }
